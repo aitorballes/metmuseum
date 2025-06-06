@@ -11,7 +11,7 @@ struct ContentTabView: View {
             }
             
             Tab("Explore", systemImage: "text.magnifyingglass", value: .list){
-                ArtsObjectsListView(viewModel: .init())
+                ArtsObjectsListView()
             }
             
             Tab("Cards", systemImage: "creditcard", value: .cards) {

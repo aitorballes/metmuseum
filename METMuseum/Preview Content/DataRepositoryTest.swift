@@ -17,7 +17,7 @@ struct DataRepositoryTest: DataRepositoryProtocol {
         try getData(filename: "art_objects_preview", type: [ArtObjectDTO].self).map { $0.toModel() }
     }
     
-    func seachArtObjects(query: String) async throws -> [ArtObjectModel] {
+    func searchArtObjects(query: String) async throws -> [ArtObjectModel] {
         try getData(filename: "art_objects_preview", type: [ArtObjectDTO].self).map { $0.toModel() }
     }
     

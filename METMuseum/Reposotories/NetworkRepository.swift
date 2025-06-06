@@ -27,7 +27,7 @@ struct NetworkRepository: DataRepositoryProtocol, NetworkInteractor {
         return try await getArtObjectsByIds(ids: objectIds)
     }
 
-    func seachArtObjects(query: String) async throws -> [ArtObjectModel] {
+    func searchArtObjects(query: String) async throws -> [ArtObjectModel] {
         guard
             let objectIds = try? await getSearchObjectIds(
                 query: query,

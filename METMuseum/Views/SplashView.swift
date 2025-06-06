@@ -27,18 +27,12 @@ struct SplashView: View {
                     }
                 }
                 .task {
-                    let networkRepository = NetworkRepository()
-                    do {
-                        withAnimation(.linear(duration: 3)) {
-                            progress = 200
-                        }
-                        
-                        _ = try await networkRepository.getObjectIds()
-                        withAnimation {
-                            navigationManager.currentView = .welcome
-                        }
-                    } catch {
-                        print("Error fetching memberships: \(error)")
+                    withAnimation(.linear(duration: 3)) {
+                        progress = 200
+                    }
+
+                    withAnimation {
+                        navigationManager.currentView = .welcome
                     }
                 }
         }

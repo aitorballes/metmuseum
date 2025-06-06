@@ -2,13 +2,14 @@ import SwiftUI
 
 struct ArtsObjectsListView: View {
     @Environment(NavigationManager.self) private var navigationManager
+    @Environment(ArtObjectsViewModel.self) private var viewModel
     
-    @State var viewModel: ArtObjectsViewModel
     @State private var lastOffset: CGFloat = 0
     @State private var showButton = false
 
     var body: some View {
         @Bindable var navigationManager = navigationManager
+        @Bindable var viewModel = viewModel
         
         NavigationStack (path: $navigationManager.listNavigationPath) {
             ScrollViewReader { scrollProxy in

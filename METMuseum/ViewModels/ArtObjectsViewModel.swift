@@ -32,12 +32,23 @@ final class ArtObjectsViewModel {
                 await searchArtObjects()
             }
         }
-    }
-    
-    
+    }    
     
     init(dataRepository: DataRepositoryProtocol = NetworkRepository()) {
-        self.dataRepository = dataRepository       
+        self.dataRepository = dataRepository
+        
+        Task {
+            await firstLoad()
+        }
+    }
+    
+    func firstLoad() async {
+        do {
+          _ = try await dataRepository.getObjectIds(getFirsts: true)
+            
+        } catch {
+            print("Error fetching object IDs: \(error)")
+        }
     }
     
     func getArtObjects() async {
@@ -60,7 +71,7 @@ final class ArtObjectsViewModel {
             }
             
             isLoading = true
-            searchObjects = try await dataRepository.seachArtObjects(query: searchQuery)
+            searchObjects = try await dataRepository.searchArtObjects(query: searchQuery)
             displayedObjects = searchObjects
             isLoading = false
         } catch {

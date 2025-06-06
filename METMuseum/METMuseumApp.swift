@@ -3,6 +3,8 @@ import SwiftUI
 
 @main
 struct METMuseumApp: App {
+    @State private var viewModel = ArtObjectsViewModel()
+    
     let modelContainer: ModelContainer = {
         let schema = Schema([
             MembershipModel.self])
@@ -21,6 +23,7 @@ struct METMuseumApp: App {
     var body: some Scene {
         WindowGroup {
            RootView()
+                .environment(viewModel)
         }
         .modelContainer(modelContainer)
     }
