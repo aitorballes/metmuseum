@@ -1,17 +1,20 @@
 import SwiftUI
 
 struct ContentTabView: View {
+    @Environment(NavigationManager.self) private var navigationManager
+    
     var body: some View {
-        TabView {
-            Tab("Home", systemImage: "bookmark") {
+        @Bindable var navigationManager = navigationManager
+        TabView (selection: $navigationManager.selectedTab) {
+            Tab("Home", systemImage: "bookmark", value: .home) {
                 HomeView(viewModel: .init())
             }
             
-            Tab("Explore", systemImage: "text.magnifyingglass"){
+            Tab("Explore", systemImage: "text.magnifyingglass", value: .list){
                 ArtsObjectsListView(viewModel: .init())
             }
             
-            Tab("Cards", systemImage: "creditcard") {
+            Tab("Cards", systemImage: "creditcard", value: .cards) {
                 MembershipListView()
             }
         }

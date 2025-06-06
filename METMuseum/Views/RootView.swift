@@ -5,9 +5,10 @@ struct RootView: View {
     
     var body: some View {
         ZStack {
-            switch navigationManager.currentPath {
-            case .home:
+            switch navigationManager.currentView {
+            case .tab:
                 ContentTabView()
+                    .environment(navigationManager)
             case .welcome:
                 WelcomeView()
             case .splashscreen:

@@ -1,16 +1,32 @@
-import Foundation
-import Observation
+import SwiftUI
 
 @Observable
 final class NavigationManager {
     static let shared = NavigationManager()
     
-    enum NavigationPath{
-        case welcome
-        case splashscreen
-        case home
-    }
+    var currentView: AppView
+    var selectedTab: TabItem
+    var listNavigationPath: NavigationPath
+    var cardNavigationPath: NavigationPath
+    var isModalPresented = false
     
-    var currentPath: NavigationPath = .splashscreen
+    init(currentView: AppView = .splashscreen, selectedTab: TabItem = .home, listNavigationPath: NavigationPath = .init(), cardNavigationPath: NavigationPath = .init()) {
+        self.currentView = currentView
+        self.selectedTab = selectedTab
+        self.listNavigationPath = listNavigationPath
+        self.cardNavigationPath = cardNavigationPath
+    }
+}
+
+enum AppView{
+    case splashscreen
+    case welcome
+    case tab
+}
+
+enum TabItem {
+    case home
+    case list
+    case cards
 }
     

@@ -2,12 +2,16 @@ import SwiftUI
 import SwiftData
 
 struct MembershipListView: View {
+    @Environment(NavigationManager.self) private var navigationManager
     @Environment(\.modelContext) private var modelContext
-    @Query() private var memberships: [MembershipModel]
+    
     @State private var showMembershipView = false
     
+    @Query() private var memberships: [MembershipModel]
+    
     var body: some View {
-        NavigationStack {
+        @Bindable var navigationManager = navigationManager
+        NavigationStack(path: $navigationManager.cardNavigationPath) {
             List {
                 ForEach(memberships) { membership in
                     CardView(model: membership)
@@ -44,7 +48,7 @@ struct MembershipListView: View {
             }
                 
             
-        }        
+        }
     }
 }
 

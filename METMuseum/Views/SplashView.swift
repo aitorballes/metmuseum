@@ -35,7 +35,7 @@ struct SplashView: View {
                         
                         _ = try await networkRepository.getObjectIds()
                         withAnimation {
-                            navigationManager.currentPath = .welcome
+                            navigationManager.currentView = .welcome
                         }
                     } catch {
                         print("Error fetching memberships: \(error)")
